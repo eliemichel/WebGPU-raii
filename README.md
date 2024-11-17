@@ -5,8 +5,6 @@ This is a simple [RAII](https://en.cppreference.com/w/cpp/language/raii) wrapper
 
 A step by step introduction about its design is available in [the RAII chapter](https://eliemichel.github.io/LearnWebGPU/advanced-techniques/raii.html) of the LearnWebGPU guide.
 
-**⚠️Disclaimer** *This is an early release that I don't find entierly satisfying, see the Limitations section below.*
-
 Basic Usage
 -----------
 
@@ -56,14 +54,3 @@ using namespace wgpu;
 	// No need to release anything
 }
 ```
-
-**☝️Important** *When the object that gets out of scope has a `destroy()` method (e.g., textures and buffers), this destroy method also gets invoked before releasing.*
-
-Limitations
------------
-
-In its current state, this wrapper puzzles me for various reasons:
-
- 1. It **does not take benefit from** the possibility to `reference()` objects to increase their internal reference counter. The main reason for this choice is that there is no way to query the reference counter's value to be able to call `destroy()` only before the ultimate call to `release()`. In the end, we are forced to maintain our own counter anyways, for instance by using a `std::unique_ptr<wgpu::raii::Foo>`. (Also, I like move-only semantics in general.)
-
- 2. I'm not entirely sure whether the ownership model is very idiomatic. If somebody who's experience with RAII would pass by, I'm interested about feedback here!
