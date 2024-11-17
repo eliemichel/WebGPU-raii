@@ -54,3 +54,5 @@ using namespace wgpu;
 	// No need to release anything
 }
 ```
+
+A more advanced example is available in [branch `step100-next-raii`](https://github.com/eliemichel/LearnWebGPU-Code/tree/step100-next-raii) of LearnWebGPU-Code.
