@@ -121,9 +121,9 @@ jobs:
     - name: Run test (Multi-config)
       if: ${{ ! matrix.emsdk-version && matrix.is-multiconfig }}
       run: >
-        build/${{ matrix.build-type }}/webgpu-raii-test${{ exe-extension }}
+        build/${{ matrix.build-type }}/webgpu-raii-test${{ matrix.exe-extension }}
 
     - name: Run test (Mono-config)
       if: ${{ ! matrix.emsdk-version && ! matrix.is-multiconfig }}
       run: >
-        build/webgpu-raii-test${{ exe-extension }}
+        build/webgpu-raii-test${{ matrix.exe-extension }}
