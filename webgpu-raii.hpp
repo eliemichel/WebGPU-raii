@@ -32,6 +32,11 @@
 
 #include <type_traits>
 
+// Emscripten still uses the old 'reference' method, which has been renamed 'addRef'
+#ifdef __EMSCRIPTEN__
+#  define addRef reference
+#endif
+
 namespace wgpu {
 namespace raii {
 
